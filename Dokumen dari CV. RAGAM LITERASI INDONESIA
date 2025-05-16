@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pendaftaran Webinar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .container {
+      width: 100%;
+      max-width: 460px;
+      background: #fff;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+      border: 1px solid #e6e6e6;
+      margin-bottom: 20px;
+    }
+    h2 {
+      text-align: center;
+      background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      animation: fadeSlide 1s ease-out forwards;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    label {
+      display: block;
+      margin-top: 14px;
+      color: #333;
+      font-size: 14px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fff;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #bc1888;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      border: none;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background: #dc2743;
+    }
+    .hidden {
+      display: none;
+    }
+    .whatsapp-link {
+      display: block;
+      margin-top: 16px;
+      text-align: center;
+      color: #25D366;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .qr-image {
+      width: 100%;
+      max-width: 280px;
+      display: block;
+      margin: 0 auto 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="form-page">
+    <h2>Form Pendaftaran Webinar</h2>
+    <form id="webinarForm">
+      <label>Nama Lengkap</label>
+      <input type="text" name="nama" required>
+      <label>No WhatsApp Aktif</label>
+      <input type="tel" name="telepon" required>
+      <label>Email</label>
+      <input type="email" name="email">
+      <label>Asal Peserta</label>
+      <select name="asal" required>
+        <option value="">-- Pilih --</option>
+        <option value="Umum">Umum</option>
+        <option value="Instansi">Instansi</option>
+      </select>
+      <label>Nama Instansi (Jika ada)</label>
+      <input type="text" name="instansi">
+      <label>Jenis Kelamin</label>
+      <select name="gender" required>
+        <option value="">-- Pilih --</option>
+        <option value="Laki-laki">Laki-laki</option>
+        <option value="Perempuan">Perempuan</option>
+      </select>
+      <label>Usia</label>
+      <input type="number" name="usia" required>
+      <label>Alasan Mengikuti Seminar</label>
+      <textarea name="alasan" rows="3" required></textarea>
+      <button type="submit">Lanjut ke Pembayaran</button>
+    </form>
+  </div>
+
+  <div class="container hidden" id="payment-page">
+    <h2>Pembayaran</h2>
+    <p style="text-align:center;font-weight:bold;">Jumlah: Rp5.000</p>
+    <img class="qr-image" src="https://i.ibb.co/239spKXK/G505776271-0703-A01.jpg" alt="QRIS Pembayaran">
+    <form id="paymentForm">
+      <label>Upload Bukti Pembayaran</label>
+      <input type="file" id="buktiBayar" accept="image/*" required>
+      <label>Bukti Follow Instagram @remajacerdas.ind</label>
+      <input type="file" id="buktiIG" accept="image/*" required>
+      <label>Bukti Subscribe YouTube</label>
+      <input type="file" id="buktiYT" accept="image/*" required>
+      <button type="submit">Lanjut ke Perjanjian</button>
+    </form>
+  </div>
+
+  <!-- Halaman Perjanjian -->
+  <div class="container hidden" id="agreement-page">
+    <h2>Perjanjian Kejujuran</h2>
+    <p>
+      Dengan ini saya menyatakan bahwa data yang saya berikan adalah benar dan bukti pembayaran yang saya unggah bukan hasil penipuan atau manipulasi.
+      Saya bersedia menerima konsekuensi jika terbukti melakukan kecurangan.
+    </p>
+    <button id="agreeButton">Saya Setuju dan Lanjut</button>
+  </div>
+
+  <div class="container hidden" id="final-page">
+    <h2>Selamat Bergabung!</h2>
+    <p style="text-align:center;">Terima kasih sudah mendaftar dan membayar.</p>
+    <a class="whatsapp-link" href="https://chat.whatsapp.com/FSWhYsugJTz0d7EaoWvE3U" target="_blank">Klik untuk Gabung Grup WhatsApp</a>
+  </div>
+
+  <script>
+    const form = document.getElementById("webinarForm");
+    const paymentForm = document.getElementById("paymentForm");
+    const formPage = document.getElementById("form-page");
+    const paymentPage = document.getElementById("payment-page");
+    const agreementPage = document.getElementById("agreement-page");
+    const finalPage = document.getElementById("final-page");
+    const agreeButton = document.getElementById("agreeButton");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      formPage.classList.add("hidden");
+      paymentPage.classList.remove("hidden");
+    });
+
+    paymentForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const buktiBayar = document.getElementById("buktiBayar").files.length;
+      const buktiIG = document.getElementById("buktiIG").files.length;
+      const buktiYT = document.getElementById("buktiYT").files.length;
+
+      if (buktiBayar && buktiIG && buktiYT) {
+        paymentPage.classList.add("hidden");
+        agreementPage.classList.remove("hidden");
+      } else {
+        alert("Silakan lengkapi semua bukti terlebih dahulu.");
+      }
+    });
+
+    agreeButton.addEventListener("click", function() {
+      agreementPage.classList.add("hidden");
+      finalPage.classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
